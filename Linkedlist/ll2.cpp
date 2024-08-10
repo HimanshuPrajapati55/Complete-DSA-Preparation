@@ -33,22 +33,40 @@ Node* insertHead(Node* head, int val) {
     return temp;
 }
 
+Node* removesHead(Node* head){
+    if(head == NULL) return head;
+    Node* temp = head;
+    head = head -> next;
+    delete temp;
+    return head; 
+}
+
+Node* deleteTail(Node* head){
+    if(head == NULL || head -> next == NULL) return NULL;
+
+    Node* temp = head;
+    while(temp -> next -> next != NULL){
+        temp = temp -> next;
+
+    }
+    delete temp->next;
+    temp->next = nullptr;
+
+
+    return head;
+
+}
+
 int main() {
     // Sample array and value for insertion
-    vector<int> arr = {12, 8, 5, 7};
-    int val = 100;
-
-    // Creating a linked list with initial elements from the array
+    vector<int> arr = {12, 5, 8, 7};
+    // Create a linked list with the values from the vector
     Node* head = new Node(arr[0]);
     head->next = new Node(arr[1]);
     head->next->next = new Node(arr[2]);
     head->next->next->next = new Node(arr[3]);
-
-    // Inserting a new node at the head of the linked list
-    head = insertHead(head, val);
-
-    // Printing the linked list
+    // Call the deleteTail function to delete the last node
+    head = deleteTail(head);
+    // Print the linked list after deletion
     printLL(head);
-
-    return 0;
 }
